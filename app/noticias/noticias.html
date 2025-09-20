@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>📰 Lista de Notícias</h1>
+
+  @for (noticia of noticias; track $index) {
+    <div class="card">
+      <h2>{{ noticia.titulo }}</h2>
+      <p><strong>Autor:</strong> {{ noticia.autor }}</p>
+      <p><strong>Data:</strong> {{ noticia.data }}</p>
+      <p>{{ noticia.conteudo }}</p>
+
+      <button (click)="curtir(noticia)">Curtir 👍</button>
+      <span class="badge">{{ noticia.curtidas }} curtidas</span>
+
+      <div class="comentarios">
+        <h3>Comentários</h3>
+        <ul>
+          @for (comentario of noticia.comentarios; track $index) {
+            <li>{{ comentario }}</li>
+          }
+        </ul>
+        <input [(ngModel)]="noticia.novoComentario" placeholder="Digite seu comentário" />
+        <button (click)="comentar(noticia)">Comentar</button>
+      </div>
+    </div>
+  }
+</div>
